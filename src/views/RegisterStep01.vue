@@ -11,18 +11,22 @@
             <div class="step active">
               <span>01</span>
               <p>이용약관</p>
+              <router-link to="/"></router-link>
             </div>
             <div class="step">
               <span>02</span>
               <p>본인인증</p>
+              <router-link to="/"></router-link>
             </div>
             <div class="step">
               <span>03</span>
               <p>개인정보</p>
+              <router-link to="/"></router-link>
             </div>
             <div class="step">
               <span>04</span>
               <p>가입완료</p>
+              <router-link to="/"></router-link>
             </div>
             <!-- /.step -->
           </div>

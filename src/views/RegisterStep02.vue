@@ -15,6 +15,7 @@
             <div class="step active">
               <span>02</span>
               <p>본인인증</p>
+              <router-link classs="page-back" to="/"></router-link>
             </div>
             <div class="step">
               03

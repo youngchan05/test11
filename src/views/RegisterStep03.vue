@@ -19,6 +19,7 @@
             <div class="step active">
               <span>03</span>
               <p>개인정보</p>
+              <router-link to="/"></router-link>
             </div>
             <div class="step">
               04

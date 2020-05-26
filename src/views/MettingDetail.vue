@@ -2,6 +2,7 @@
 <div class="sub-contents type01">
         <div class="sub-title">
           <strong class="tit detail">일정 상세보기</strong>
+          <router-link to="/" class="page-back"></router-link>
           <!-- /. -->
         </div>
         <!-- /.sub-title -->

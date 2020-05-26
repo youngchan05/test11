@@ -2,7 +2,7 @@
     <div class="board-wrap">
         <div class="board-header">
             <p>IR 일정 <span>Events</span></p>
-            <div class="select is_pc active">
+            <div class="select is_pc" :class="{active:isActive}" v-on:click="onToggle">
                 <span class="selectd">2020</span>
                 <ul>
                     <li>2019</li>
@@ -50,6 +50,18 @@
     </div>
 </template>
 <script>
+export default {
+  data: () => {
+    return {
+      isActive: false
+    }
+  },
+  methods: {
+    onToggle () {
+      this.isActive = !this.isActive
+    }
+  }
+}
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
@@ -337,7 +349,7 @@
             }
         }
 
-        .select {
+        .select{
             position: relative;
             border: none;
             box-shadow: none;
@@ -374,6 +386,9 @@
                         color: #313439;
                         border-bottom: 1px solid #313439;
                     }
+                    &:hover {
+                        background:transparent;
+                    }
                 }
             }
         }
@@ -391,7 +406,6 @@
                 background-size: 30px auto !important;
 
                 +a {
-                    margin-left: auto;
                 }
             }
         }
@@ -526,7 +540,7 @@
         border-bottom: none;
 
         .select {
-            position: relative;
+            position: static;
             border: none;
             box-shadow: none;
             width: 100%;
@@ -540,8 +554,10 @@
             }
 
             ul {
+                position:static;
                 display: flex;
-
+                border:none;
+                box-shadow: none;
                 li {
                     flex: 1 1 auto;
                     padding-bottom: 13px;
@@ -555,7 +571,9 @@
                     span {
                         display: none;
                     }
-
+                    &:hover {
+                        background-color:transparent;
+                    }
                     &.active {
                         font-weight: 700;
                         color: #313439;

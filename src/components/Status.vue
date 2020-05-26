@@ -69,7 +69,7 @@
         <!-- /.status-box -->
         <div class="allocation">
             <div class="sub-tit">배당내역
-                <div class="select type01">
+                <div class="select type01" :class="{active:isActive}" v-on:click="onToggle">
                     <span class="selectd">2019</span>
                     <ul>
                         <li class="active">2018</li>
@@ -139,6 +139,18 @@
     </div>
 </template>
 <script>
+export default {
+  data: () => {
+    return {
+      isActive: false
+    }
+  },
+  methods: {
+    onToggle () {
+      this.isActive = !this.isActive
+    }
+  }
+}
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
@@ -397,7 +409,6 @@
 
     .allocation {
         margin-top: 60px;
-
         .table {
             width: 100%;
 

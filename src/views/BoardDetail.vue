@@ -7,7 +7,7 @@
     <div class="board-info">
       <span class="date">2020.06.18</span>
       <div class="sns">
-        <a href="#" class="faceboock"></a>
+        <a href="#" class="facebook"></a>
         <a href="#" class="twitter"></a>
         <a href="#" class="shere"></a>
       </div>
@@ -38,11 +38,14 @@
          LG디스플레이 올레드 TV 패널, 눈이 편안한 디스플레이 국제인증 획득
        </a>
     </div>
+    <div class="btn-wrap">
+      <button type="button" class="type-gray">홈으로</button>
+    </div>
     <!-- /.board-paging -->
   </div>
   <!-- /.board-detail -->
 </template>
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/style/_mixin.scss";
 .board-detail {
   max-width:800px;
@@ -64,13 +67,32 @@
     }
   }
   .board-info {
+    display:flex;
+    align-items: center;
     .date{
+      margin-right:auto;
       font-family: Roboto;
       font-style: normal;
       font-weight: normal;
       font-size: 14px;
       line-height: 16px;
       color: #8E8E93;
+    }
+    .sns {
+      a {
+        display:inline-block;
+        width:48px;
+        height:48px;
+        @each $obj in facebook, twitter , shere {
+          &.#{$obj}{
+            @include bg(icon/sns_#{$obj});
+            @if($obj == shere){
+              width:96px;
+              height:48px;
+            }
+          }
+        }
+      }
     }
   }
   .board-main {
@@ -107,7 +129,7 @@
     a {
       position:relative;
       padding:19px 20px 19px 16px;
-      padding-left:160px;
+      padding-left:130px;
       display:block;
       font-size: 16px;
       line-height: 22px;
@@ -117,7 +139,7 @@
         position: absolute;
         left:0;
         top:50%;
-        width:160px;
+        width:120px;
         text-align: center;
         transform: translateY(-50%);
         font-size: 16px;
@@ -128,14 +150,85 @@
         span {
           display:inline-block;
           padding-left:38px;
+          @include bg(arrow/arrow_toggle,$type:svg,$pos:left center);
         }
       }
       + a {
         border-top:1px solid #ACACAC;
       }
+      &.next{
+        p {
+          span {
+            @include bg(arrow/arrow_toggle_up,$type:svg,$pos:left center);
+          }
+        }
+      }
+    }
+  }
+  .btn-wrap {
+    margin-top:40px;
+    text-align: center;
+    button {
+      width:144px;
+      height:48px;
+      font-size: 16px;
+      line-height: 46px;
+      text-align: center;
+      letter-spacing: -0.5px;
+      border-radius: 4px;
     }
   }
 }
 @media screen and (max-width: 768px) {
+  .board-detail{
+    padding:35px 16px 50px 16px;
+    .title {
+      margin-bottom:30px;
+      p {
+        font-size: 22px;
+        line-height: 30px;
+      }
+    }
+    .board-info {
+      .date {
+        font-size:12px;
+      }
+      .sns {
+        a {
+          width:32px;
+          height:32px;
+          &.shere {
+            width:64px;
+            height:32px;
+          }
+          + a {
+            margin-left:12px;
+          }
+        }
+      }
+    }
+    .board-main {
+      border-top:none;
+      padding:16px 0 0 0;
+      p {
+        font-size: 15px;
+        line-height: 26px;
+        + strong {
+          margin-top:30px;
+        }
+        + p {
+          margin-top:16px;
+        }
+      }
+      strong {
+        + p {
+          margin-top:16px;
+        }
+      }
+    }
+    .board-paging {
+      display:none;
+    }
+  }
 }
 </style>

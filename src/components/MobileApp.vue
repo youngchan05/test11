@@ -1,60 +1,31 @@
 <template>
-  <div>
-  <MainVisual/>
-    <div class="contents">
-      <Events/>
-      <Qer/>
-      <Notice/>
-      <News/>
-      <Report/>
-      <Financial/>
-      <Disclosure/>
-      <Status/>
-      <Faq/>
-      <Contact/>
+<div class="app-down" :class="{active:isActive}">
+    <div class="inner">
+    <strong>주주와 함께하는 LG디스플레이</strong>
+    <p>LG디스플레이 IR앱에서 투자정보/소식을 받아보고,<br>
+    IR담당자와 소통할 수 있습니다. </p>
+    <button tpye="button" class="btn-down type-red">앱 다운로드</button>
+    <button type="button" class="close" v-on:click="onToggle">모바일 웹에서 계속보기</button>
     </div>
-    <MobileApp/>
-  </div>
+    <!-- /.inner -->
+</div>
 </template>
-
 <script>
-import MainVisual from '@/components/MainVisual.vue'
-import Events from '@/components/Events.vue'
-import Qer from '@/components/Qer.vue'
-import Notice from '@/components/Notice.vue'
-import News from '@/components/News.vue'
-import Report from '@/components/Report.vue'
-import Financial from '@/components/Financial.vue'
-import Disclosure from '@/components/Disclosure.vue'
-import Status from '@/components/Status.vue'
-import Faq from '@/components/Faq.vue'
-import Contact from '@/components/Contact.vue'
-import MobileApp from '@/components/MobileApp.vue'
-
 export default {
-  name: 'main',
-  components: {
-    MainVisual,
-    Events,
-    Qer,
-    Notice,
-    News,
-    Report,
-    Financial,
-    Disclosure,
-    Status,
-    Faq,
-    Contact,
-    MobileApp
+  data: () => {
+    return {
+      isActive: false
+    }
+  },
+  methods: {
+    onToggle () {
+      this.isActive = !this.isActive
+    }
   }
 }
 </script>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-.contents {
-padding-top: 202px;
-margin: 0 auto;
-max-width: 1150px;
-}
 .app-down {
   display: none;
   align-items: flex-end;
@@ -105,11 +76,10 @@ max-width: 1150px;
   }
 }
 @media screen and (max-width: 768px) {
-.contents {
-    padding: 45px 16px 192px 16px;
-  }
   .app-down {
-    display:flex;
+    &.active {
+        display:none;
+    }
   }
 }
 </style>

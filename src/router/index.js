@@ -12,6 +12,9 @@ import RegisterStep02 from '@/views/RegisterStep02'
 import RegisterStep03 from '@/views/RegisterStep03'
 import RegisterStep04 from '@/views/RegisterStep04'
 import BoardDetail from '@/views/BoardDetail'
+import MobileMypage from '@/views/MobileMypage'
+import Mypage from '@/views/Mypage'
+import Ndr from '@/views/Ndr'
 Vue.use(VueRouter)
 
 const routes = [
@@ -74,6 +77,21 @@ const routes = [
     path: '/BoardDetail',
     name: 'BoardDetail',
     component: BoardDetail
+  },
+  {
+    path: '/MobileMypage',
+    name: 'MobileMypage',
+    component: MobileMypage
+  },
+  {
+    path: '/Mypage',
+    name: 'Mypage',
+    component: Mypage
+  },
+  {
+    path: '/Ndr',
+    name: 'Ndr',
+    component: Ndr
   }
 ]
 

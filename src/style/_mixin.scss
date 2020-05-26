@@ -8,10 +8,8 @@
 $white: #fff;
 $black: #000;
 $gray: #545454;
+$black2 :#313439;
 
-$white: #fff;
-$black: #000;
-$gray: #545454;
 
 //common
 .type-white {
@@ -19,7 +17,11 @@ $gray: #545454;
 	border: 1px solid $gray;
 	color: $gray;
 }
-
+.type-black {
+	background: $black2;
+	border: 1px solid $black2;
+	color: $white;
+}
 .type-gray {
 	background: $gray;
 	border: 1px solid $gray;
@@ -124,6 +126,8 @@ $gray: #545454;
 	width: 200px;
 	height: 54px;
 	z-index: 10;
+	cursor: pointer;
+
 	ul {
 		display:none;
 		position:absolute;

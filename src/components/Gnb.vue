@@ -1,19 +1,19 @@
 <template>
   <div>
-    <div class="header-wrap" v-if="!isChecked">
+    <div class="header-wrap">
     <div class="top">
       <router-link class="meeting" to="/Metting">미팅예약</router-link>
       <a href="#" class="company">회사소개</a>
       <div class="app">
-        <button type="button">앱다운로드</button>
-        <div class="app-box">
+        <button type="button" v-on:click="onToggle2">앱다운로드</button>
+        <div class="app-box" :class="{active:isActive2}">
             <div class="googlePlay">
               <p>안드로이드</p>
-              <img src="../assets/img/img_googlePlay.png" alt="">
+              <router-link class="meeting" to="/"><img src="../assets/img/img_googlePlay.png" alt=""></router-link>
             </div>
             <div class="appStore">
               <p>아이폰</p>
-              <img src="../assets/img/img_appStore.png" alt="">
+              <router-link class="meeting" to="/"><img src="../assets/img/img_appStore.png" alt=""></router-link>
             </div>
             <!-- /.app -->
         </div>
@@ -28,9 +28,9 @@
     <div class="gnb">
       <button type="button" class="menu" :class="{active:isActive}" v-on:click="onToggle"></button>
       <h1 class="log">
-        <img src="../assets/logo/logo_logo.png" alt />
+        <router-link to="/"><img src="../assets/logo/logo_logo.png" alt /></router-link>
       </h1>
-      <button type="button" class="mypage"></button>
+      <router-link class="mypage" to="/MobileMypage"></router-link>
       <div class="list" :class="{active:isActive}">
         <ul>
           <li class="tit">Investor Reations</li>
@@ -70,12 +70,16 @@
 export default {
   data: () => {
     return {
-      isActive: false
+      isActive: false,
+      isActive2: false
     }
   },
   methods: {
     onToggle () {
       this.isActive = !this.isActive
+    },
+    onToggle2 () {
+      this.isActive2 = !this.isActive2
     }
   }
 }
@@ -124,6 +128,7 @@ export default {
         @include bg(bg/bg_app,$pos:right center);
       }
       .app-box {
+        display:none;
         position:absolute;
         left:50%;
         top:30px;
@@ -150,6 +155,9 @@ export default {
           line-height: 17px;
           color: #545454;
         }
+        }
+        &.active {
+          display:block;
         }
       }
     }
@@ -219,7 +227,7 @@ align-items: center;
   position: fixed;
   left: 0;
   top: 0;
-  z-index: 10;
+  z-index: 110;
   border-bottom:none;
   .top {
     display: none;
@@ -238,7 +246,8 @@ align-items: center;
         height: 21px;
       }
     }
-    button {
+    button,>a {
+      display:inline-block;
       width: 24px;
       height: 24px;
 
@@ -246,6 +255,11 @@ align-items: center;
       mypage {
         &.#{$obj} {
           @include bg(btn/btn_#{$obj});
+        }
+      }
+      &.menu{
+        &.active {
+          @include bg(btn/btn_close_gnb);
         }
       }
     }

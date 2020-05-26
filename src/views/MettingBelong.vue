@@ -9,6 +9,7 @@
             >* 정확하지 않은 정보이거나 본인의 명함이 아닐 경우 서비스 이용에
             제한을 받을 수 있습니다.</span
           >
+          <router-link to="/" class="page-back"></router-link>
         </div>
         <!-- /.sub-title -->
         <div class="side-menu">
@@ -16,10 +17,10 @@
             <strong class="menu-tit">회원정보</strong>
             <ul class="menu-list">
               <li>
-                <a href="" class="">개인정보 변경</a>
+                <router-link to="/Mypage" class="">개인정보 변경</router-link>
               </li>
               <li>
-                <a href="" class="active">소속정보 변경</a>
+                <router-link to="/MettingBelong" class="active">소속정보 변경</router-link>
               </li>
             </ul>
           </div>
@@ -27,7 +28,7 @@
             <strong class="menu-tit">활동정보</strong>
             <ul class="menu-list">
               <li>
-                <a href="">IR미팅 내역</a>
+                <router-link to="/MettingList" class="">미팅내역</router-link>
               </li>
             </ul>
           </div>
@@ -65,11 +66,9 @@
               </li>
               <li class="half">
                 <label class="tit right" for="occupation">직군</label>
-                <div class="select">
+                <div class="select" :class="{active:isActive}" v-on:click="onToggle">
                   <span class="selectd">직군</span>
                   <ul>
-                    <li>직군1</li>
-                    <li>직군1</li>
                     <li>직군1</li>
                     <li>직군1</li>
                   </ul>
@@ -85,6 +84,21 @@
         </div>
       </div>
 </template>
+<script>
+export default {
+  data: () => {
+    return {
+      isActive: false,
+      isActive2: false
+    }
+  },
+  methods: {
+    onToggle () {
+      this.isActive = !this.isActive
+    }
+  }
+}
+</script>
 <style lang="scss">
 @import "@/style/_mixin.scss";
 .change-section {

@@ -276,14 +276,14 @@
     max-width: 1150px;
     margin: 0 auto;
     padding: 68px 0 56px 0;
-
+    .page-back {
+        display:none;
+    }
     .sub-title {
         position: relative;
         margin-bottom: 98px;
-
         &.meeting {
             margin-bottom: 54px;
-
             .tit {
                 margin-bottom: 0;
             }
@@ -347,7 +347,9 @@
                 text-align: center;
                 color: #313439;
                 border-radius: 100px;
-
+                a {
+                    display:none;
+                }
                 p {
                     font-family: "Noto Sans KR";
                     font-weight: 400;
@@ -798,10 +800,18 @@
 @media screen and (max-width: 768px) {
     .sub-contents {
         padding: 24px 24px 54px 24px;
-
+        .page-back  {
+            display:block;
+            position:absolute;
+            left:0;
+            top:50%;
+            transform: translateY(-50%);
+            width:24px;
+            height:24px;
+            @include bg(arrow/arrow_step, $type:svg, $pos:left center);
+        }
         &.type01 {
             padding-left: 24px;
-
             .side-menu {
                 display: none;
             }
@@ -833,7 +843,7 @@
                     text-align: center;
                     color: #313439;
                     border-bottom: 1px solid #E5E5EA;
-                    @include bg(arrow/arrow_step, $type:svg, $pos:left center);
+                    background:none;
                 }
             }
         }
@@ -873,9 +883,17 @@
                             text-align: center;
                             color: #313439;
                             border-bottom: 1px solid #E5E5EA;
+                        }
+                        a {
+                            position:absolute;
+                            left:0;
+                            top:50%;
+                            transform: translateY(-50%);
+                            display:block;
+                            width:24px;
+                            height:24px;
                             @include bg(arrow/arrow_step, $type:svg, $pos:left center);
                         }
-
                         &.result {
                             p {
                                 background: none;

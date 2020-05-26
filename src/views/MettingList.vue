@@ -2,30 +2,31 @@
     <div class="sub-contents type01">
         <div class="sub-title meeting">
           <strong class="tit">미팅내역</strong>
+          <router-link to="/" class="page-back"></router-link>
           <!-- /. -->
         </div>
         <!-- /.sub-title -->
-        <div class="side-menu">
-          <div class="menu">
-            <strong class="menu-tit">회원정보</strong>
-            <ul class="menu-list">
-              <li>
-                <a href="" class="">개인정보 변경</a>
-              </li>
-              <li>
-                <a href="">소속정보 변경</a>
-              </li>
-            </ul>
+          <div class="side-menu">
+            <div class="menu">
+              <strong class="menu-tit">회원정보</strong>
+              <ul class="menu-list">
+                <li>
+                  <router-link to="/Mypage" class="">개인정보 변경</router-link>
+                </li>
+                <li>
+                  <router-link to="/MettingBelong" class="">소속정보 변경</router-link>
+                </li>
+              </ul>
+            </div>
+            <div class="menu">
+              <strong class="menu-tit">활동정보</strong>
+              <ul class="menu-list">
+                <li>
+                  <router-link to="/MettingList" class="active">미팅내역</router-link>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="menu">
-            <strong class="menu-tit">활동정보</strong>
-            <ul class="menu-list">
-              <li>
-                <a href="" class="active">IR미팅 내역</a>
-              </li>
-            </ul>
-          </div>
-        </div>
         <!--side-menu-->
         <div class="meeting-table">
           <p class="title result">승인 완료</p>
@@ -74,7 +75,7 @@
           </ul>
           <div class="btn-wrap">
             <button type="button" class="type-white">일정 변경</button>
-            <button type="button" class="type-white">일정 취소</button>
+            <button type="button" class="type-white" v-on:click="onToggle">일정 취소</button>
           </div>
         </div>
         <div class="meeting-table">
@@ -175,8 +176,47 @@
             <a href="#"><span>더보기</span></a>
           </div>
         </div>
+        <div class="pop" :class="{active:isActive}">
+        <div class="pop-inner">
+          <p class="pop-title">신청된 IR미팅을 취소합니다.</p>
+          <button type="button" class="pop-close" v-on:click="onToggle"></button>
+          <div class="cancel-box">
+            <strong>신청내용</strong>
+            <p>2020.06.18 10:00</p>
+            <span>탐방미팅</span><span>박무열 매니저 외 2명</span>
+          </div>
+          <div class="textarea">
+            <textarea
+              class="input scroll"
+              name=""
+              id=""
+              cols="30"
+              rows="10"
+              placeholder="내용을 입력하세요"
+            ></textarea>
+          </div>
+          <div class="btn-wrap">
+            <button type="button" class="type-gray2" v-on:click="onToggle">취소</button>
+            <button type="button" class="type-gray">확인</button>
+          </div>
+        </div>
+      </div>
       </div>
 </template>
+<script>
+export default {
+  data: () => {
+    return {
+      isActive: false
+    }
+  },
+  methods: {
+    onToggle () {
+      this.isActive = !this.isActive
+    }
+  }
+}
+</script>
 <style lang="scss">
 @import "@/style/_mixin.scss";
 .meeting-table {
@@ -382,6 +422,144 @@
     }
 }
 }
+.pop {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba($color:#ACACAC, $alpha: .5);
+  z-index: 100;
+  &.active {
+    display:flex;
+  }
+  &-inner {
+    position: relative;
+    width: 512px;
+    padding: 52px 33px 62px 33px;
+    background: #FFFFFF;
+    border-radius: 4px;
+  }
+
+  &-close {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    width: 12px;
+    height: 12px;
+    @include bg(btn/btn_close_pop);
+  }
+
+  &-title {
+    margin-bottom: 38px;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 32px;
+    text-align: center;
+    letter-spacing: -0.005em;
+    color: #313439;
+  }
+
+  .textarea {
+    textarea {
+      width: 100%;
+      height: 220px;
+      padding: 15px 16px;
+      border: 1px solid #EFEFF4;
+      border-radius: 4px;
+    }
+  }
+
+  .cancel-box {
+    margin-bottom: 14px;
+    padding: 14px 20px;
+    background: #F2F2F2;
+    border-radius: 3px;
+
+    strong {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 20px;
+      letter-spacing: -0.01em;
+      color: #8E8E93;
+    }
+
+    p {
+      margin: 8px 0 5px 0;
+      font-family: Roboto;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      color: #313439;
+    }
+
+    span {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: -0.005em;
+      color: #545454;
+
+      +span {
+        position: relative;
+        margin-left: 10px;
+        padding-left: 10px;
+
+        &::after {
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 1px;
+          height: 10px;
+          content: "";
+          background-color: #C7C7CC;
+          ;
+        }
+      }
+    }
+  }
+
+  .form-list {
+    li {
+      label {
+        margin-bottom: 3px;
+        font-size: 16px;
+        line-height: 32px;
+        letter-spacing: -0.5px;
+        color: #8E8E93;
+      }
+
+      +li {
+        margin-top: 23px;
+      }
+    }
+  }
+
+  .btn-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 62px;
+
+    button {
+      width: 86px;
+      height: 48px;
+      line-height: 48px;
+      font-weight: 500;
+      font-size: 16px;
+      text-align: center;
+      border-radius: 4px;
+
+      +button {
+        margin-left: 10px;
+      }
+    }
+  }
+}
 @media screen and (max-width: 768px) {
 .meeting-table {
     .title {
@@ -484,5 +662,36 @@
         margin-top: 64px;
     }
 }
+  .pop {
+    background-color:#fff;
+    height:calc(100% - 56px);
+    top:56px;
+    &.active {
+      display:block;
+    }
+    .pop-inner {
+      width:100%;
+      padding:0;
+      .pop-title {
+        padding:15px 0;
+        font-size: 18px;
+        line-height: 26px;
+        margin-bottom:0;
+      }
+      .textarea {
+        padding:0 16px;
+      }
+      .pop-close {
+        display:none;
+      }
+      .btn-wrap {
+        margin-top:30px;
+        padding:0 16px;
+        button {
+          width:50%;
+        }
+      }
+    }
+  }
 }
 </style>

@@ -2,7 +2,7 @@
      <div class="board-wrap">
         <div class="board-header">
             <p>재무정보 <span>Financial Statements</span></p>
-            <div class="select">
+            <div class="select" :class="{active:isActive}" v-on:click="onToggle">
                 <span class="selectd">2019.4Q</span>
                 <ul>
                     <li class="active"><span>20</span>19.2Q</li>
@@ -31,6 +31,18 @@
     </div>
 </template>
 <script>
+export default {
+  data: () => {
+    return {
+      isActive: false
+    }
+  },
+  methods: {
+    onToggle () {
+      this.isActive = !this.isActive
+    }
+  }
+}
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
